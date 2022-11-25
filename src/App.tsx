@@ -1,19 +1,17 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import Login from "./assets/Login";
-import AppService from "./components/AppService";
+import Sandbox from "./components/Test";
 
-function App() {
+const App: React.FC = (): JSX.Element => {
   return (
-    <div className="navBar">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/movie&series" element={<AppService />} />
-        </Routes>
-      </Router>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/test" element={<Sandbox />} />
+      </Routes>
+    </>
   );
-}
+};
 
 export default App;

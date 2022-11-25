@@ -1,13 +1,7 @@
 import * as React from "react";
 import LoginDetail from "./LoginDetail";
-import { Col, Button, Row, Container, Card, Form } from "react-bootstrap";
-// import AppService from "../components/AppService";
-// import { BrowserRouter as Route } from "react-router-dom";
-// import path from ".path";
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import { BrowserRouter as Route } from "react-router-dom";
-// import AppService from "../components/AppService";
+import "./Login.css";
+import AppService from "../components/AppService";
 
 interface LoginState {
   password: string;
@@ -85,71 +79,50 @@ export default function Login() {
   };
 
   return (
-    <div>
-      <Container>
-        <Row className="vh-100 d-flex justify-content-center align-items-center">
-          <Col md={8} lg={6} xs={12}>
-            <div className="border border-3 border-primary"></div>
-            <Card className="shadow">
-              <Card.Body>
-                {isLoggedIn ? (
-                  <>
-                    <Button
-                      type="button"
-                      onClick={() => dispatch({ type: "logout" })}
-                    >
-                      Log out
-                    </Button>
-                  </>
-                ) : (
-                  <div className="mb-3 mt-md-4">
-                    <h2 className="fw-bold mb-2 text-uppercase ">
-                      OMDB Movies & Series
-                    </h2>
-                    <Form className="d-flex" onSubmit={onSubmit}>
-                      {error && <p className="error">{error}</p>}
-                      <p className=" mb-5"> PLease Login!</p>
-
-                      <Form.Control
-                        type="text"
-                        placeholder="username"
-                        value={username}
-                        onChange={(e) =>
-                          dispatch({
-                            type: "field",
-                            fieldName: "username",
-                            payload: e.currentTarget.value,
-                          })
-                        }
-                      />
-                      <Form.Control
-                        type="password"
-                        placeholder="password"
-                        autoComplete="new-password"
-                        value={password}
-                        onChange={(e) =>
-                          dispatch({
-                            type: "field",
-                            fieldName: "password",
-                            payload: e.currentTarget.value,
-                          })
-                        }
-                      />
-                      <Button
-                        type="submit"
-                        className="submit"
-                        disabled={isLoading}
-                      >
-                        {isLoading ? "Loggin in....." : "Login In"}
-                      </Button>
-                    </Form>
-                  </div>
-                )}
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+    <div className="Login">
+      <div className="login-container">
+        {isLoggedIn ? (
+          <div className="TEST">
+            <AppService />
+            <button type="button" onClick={() => dispatch({ type: "logout" })}>
+              Log out
+            </button>
+          </div>
+        ) : (
+          <form className="form" onSubmit={onSubmit}>
+            {error && <p className="error">{error}</p>}
+            <p> PLease Login!</p>
+            <input
+              type="text"
+              placeholder="username"
+              value={username}
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "username",
+                  payload: e.currentTarget.value,
+                })
+              }
+            />
+            <input
+              type="password"
+              placeholder="password"
+              autoComplete="new-password"
+              value={password}
+              onChange={(e) =>
+                dispatch({
+                  type: "field",
+                  fieldName: "password",
+                  payload: e.currentTarget.value,
+                })
+              }
+            />
+            <button type="submit" className="submit" disabled={isLoading}>
+              {isLoading ? "Loggin in....." : "Login In"}
+            </button>
+          </form>
+        )}
+      </div>
     </div>
   );
 }

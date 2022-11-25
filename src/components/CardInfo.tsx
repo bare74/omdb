@@ -1,6 +1,5 @@
 // import Card from "react-bootstrap/Card";
-import { API_KEY } from "../services/ApiDetail";
-import { BASE__URL } from "../services/ApiDetail";
+import { API_KEY, BASE__URL } from "../services/ApiDetail";
 import { Container, Card, Col } from "react-bootstrap";
 import img_not_found from "../img/img_not_found.png";
 

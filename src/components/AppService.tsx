@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import Modal from "react-bootstrap/Modal";
-import MovieDetail from "./CardDetail";
+import CardDetail from "./CardDetail";
 import NavBar from "./NavBar";
-import ColCardBox from "./CardInfo";
-import { API_KEY } from "../services/ApiDetail";
-import { BASE__URL } from "../services/ApiDetail";
+import CardInfo from "./CardInfo";
+import { API_KEY, BASE__URL } from "../services/ApiDetail";
 import Alert from "react-bootstrap/Alert";
 import Pagination from "./Pagination";
 import SearchInput from "./SearchInput";
@@ -76,7 +75,7 @@ function AppService() {
       {data !== null &&
         data.length > 0 &&
         data.map((result, index) => (
-          <ColCardBox
+          <CardInfo
             Title={undefined}
             imdbID={undefined}
             Poster={undefined}
@@ -95,7 +94,7 @@ function AppService() {
         onClick={() => setActivateModal(false)}
       >
         {detailRequest === false ? (
-          <MovieDetail
+          <CardDetail
             Poster={undefined}
             Actors={undefined}
             imdbRating={undefined}
