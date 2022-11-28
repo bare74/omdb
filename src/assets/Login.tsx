@@ -1,7 +1,7 @@
 import React from "react";
 import LoginDetail from "./LoginDetail";
 import "./Login.css";
-import AppService from "../components/AppService";
+import DashBoard from "../components/DashBoard";
 import { useEffect } from "react";
 
 interface LoginState {
@@ -69,7 +69,7 @@ export default function Login() {
 
   console.log(username);
   console.log(isLoggedIn);
-  console.log(isLoading);
+  console.log(initialState);
 
   useEffect(() => {
     localStorage.setItem("userLogged", JSON.stringify(isLoggedIn));
@@ -78,12 +78,14 @@ export default function Login() {
   const stillLoggedIn = JSON.parse(localStorage.getItem("userLogged") as any);
   console.log(stillLoggedIn);
 
-  //TEST TEST
-  //TEST TEST
-  // localStorage?.setItem("test", JSON.stringify(isLoggedIn));
-  // let result = JSON.parse(localStorage?.getItem("test"));
+  console.log(process.env.REACT_APP_BASE_URL);
 
-  // console.log(result);
+  //   //TEST TEST
+  //   //TEST TEST
+  //   // localStorage?.setItem("test", JSON.stringify(isLoggedIn));
+  //   // let result = JSON.parse(localStorage?.getItem("test"));
+
+  //   // console.log(result);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -102,7 +104,7 @@ export default function Login() {
       <div className="login-container">
         {stillLoggedIn || isLoggedIn ? (
           <div className="TEST">
-            <AppService />
+            <DashBoard />
             <button type="button" onClick={() => dispatch({ type: "logout" })}>
               Log out
             </button>
@@ -145,3 +147,78 @@ export default function Login() {
     </div>
   );
 }
+
+// import { Component } from "react";
+// import "./Login.css";
+// import { Navigate } from "react-router-dom";
+
+// class Login extends Component<{}, { islogged: boolean; loginParams: any }> {
+//   constructor(props: any) {
+//     super(props);
+//     this.state = {
+//       islogged: false,
+//       loginParams: {
+//         user_id: "",
+//         user_password: "",
+//       },
+//     };
+//   }
+//   handleFormChange = (event: any) => {
+//     let loginParamsNew = { ...this.state.loginParams };
+//     let val = event.target.value;
+//     loginParamsNew[event.target.name] = val;
+//     this.setState({
+//       loginParams: loginParamsNew,
+//     });
+//   };
+//   login = (event: any) => {
+//     let user_id = this.state.loginParams.user_id;
+//     let user_password = this.state.loginParams.user_password;
+//     if (user_id === "admin" && user_password === "123") {
+//       localStorage.setItem("token", "T");
+//       this.setState({
+//         islogged: true,
+//       });
+//     }
+//     event.preventDefault();
+//   };
+//   render() {
+//     if (localStorage.getItem("token")) {
+//       return <Navigate to="/app" />;
+//     }
+//     return (
+//       <div className="login">
+//         <form onSubmit={this.login} className="form-signin">
+//           <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+//           <div className="row">
+//             <div className="col1">
+//               <input
+//                 className="input-login"
+//                 type="text"
+//                 name="user_id"
+//                 onChange={this.handleFormChange}
+//                 placeholder="Enter Username"
+//               />
+
+//               <input
+//                 className="input-login"
+//                 type="password"
+//                 name="user_password"
+//                 onChange={this.handleFormChange}
+//                 placeholder="Enter Password"
+//               />
+
+//               <input className="input-login" type="submit" value="Login" />
+//             </div>
+//           </div>
+//           <br />
+//           <br />
+//           <br />
+//           <p>username = admin & password = 123</p>
+//         </form>
+//       </div>
+//     );
+//   }
+// }
+// export default Login;

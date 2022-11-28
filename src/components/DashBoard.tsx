@@ -3,14 +3,15 @@ import Modal from "react-bootstrap/Modal";
 import CardDetail from "./CardDetail";
 import NavBar from "./NavBar";
 import CardInfo from "./CardInfo";
-import { API_KEY, BASE__URL } from "../services/ApiDetail";
+// import { API_KEY, BASE__URL } from "../services/ApiDetail";
 import Alert from "react-bootstrap/Alert";
 import Pagination from "./Pagination";
 import { Button } from "react-bootstrap";
 import Loader from "./Loader";
+
 import "../App.css";
 
-function AppService() {
+function DashBoard() {
   const [data, setData] = useState([null]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -27,7 +28,7 @@ function AppService() {
     setData([null]);
 
     fetch(
-      `${BASE__URL}?s=${inputQuery}&page=${currentPage}&apikey=${API_KEY}`,
+      `${process.env.REACT_APP_BASE_URL}?s=${inputQuery}&page=${currentPage}&apikey=${process.env.REACT_APP_API_KEY}`,
       {
         method: "POST",
         headers: {
@@ -163,4 +164,4 @@ function AppService() {
   );
 }
 
-export default AppService;
+export default DashBoard;

@@ -10,9 +10,11 @@ const SearchInput = ({ searchHandler }: { searchHandler: any }) => {
     event.preventDefault();
     searchHandler(message);
   };
+
   return (
     <Form className="d-flex" onSubmit={handleSubmit}>
       <Form.Control
+        id="search-form"
         type="search"
         placeholder="Search"
         className="me-2"

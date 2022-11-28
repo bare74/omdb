@@ -1,6 +1,6 @@
-// import Card from "react-bootstrap/Card";
-import { API_KEY, BASE__URL } from "../services/ApiDetail";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+
+// import { Card } from "react-bootstrap";
 import img_not_found from "../img/img_not_found.png";
 
 import "../App.css";
@@ -28,12 +28,15 @@ const CardInfo = ({
     ActivateModal(true);
     DetailRequest(true);
 
-    fetch(`${BASE__URL}?i=${imdbID}&apikey=${API_KEY}`, {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-      },
-    })
+    fetch(
+      `${process.env.REACT_APP_BASE_URL}?i=${imdbID}&apikey=${process.env.REACT_APP_API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+        },
+      }
+    )
       .then((resp) => resp)
       .then((resp) => resp.json())
       .then((response) => {
