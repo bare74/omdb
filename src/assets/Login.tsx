@@ -69,7 +69,6 @@ export default function Login() {
 
   console.log(username);
   console.log(isLoggedIn);
-  console.log(initialState);
 
   useEffect(() => {
     localStorage.setItem("userLogged", JSON.stringify(isLoggedIn));
@@ -77,15 +76,6 @@ export default function Login() {
 
   const stillLoggedIn = JSON.parse(localStorage.getItem("userLogged") as any);
   console.log(stillLoggedIn);
-
-  console.log(process.env.REACT_APP_BASE_URL);
-
-  //   //TEST TEST
-  //   //TEST TEST
-  //   // localStorage?.setItem("test", JSON.stringify(isLoggedIn));
-  //   // let result = JSON.parse(localStorage?.getItem("test"));
-
-  //   // console.log(result);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
