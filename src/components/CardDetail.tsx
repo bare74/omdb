@@ -21,8 +21,17 @@ const CardDetail = ({
   Plot: any;
 }) => {
   return (
-    <div>
-      <Card.Img src={Poster === "N/A" ? img_not_found : Poster} alt={Title} />
+    <div className="card-detail">
+      <Card.Img
+        src={Poster === "N/A" ? img_not_found : Poster}
+        alt={Title}
+        // style={{
+        //   borderRadius: "5%",
+        //   border: "1px solid black",
+        //   height: "300px",
+        //   width: "200px",
+        // }}
+      />
       <Card.Body>
         <Card.Title>{Title}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">

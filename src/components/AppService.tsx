@@ -6,16 +6,9 @@ import CardInfo from "./CardInfo";
 import { API_KEY, BASE__URL } from "../services/ApiDetail";
 import Alert from "react-bootstrap/Alert";
 import Pagination from "./Pagination";
-import SearchInput from "./SearchInput";
+import { Button } from "react-bootstrap";
+import Loader from "./Loader";
 import "../App.css";
-
-const Loader = () => (
-  <div className="text-center">
-    <div className="spinner-border" role="status">
-      <span className="visually-hidden">Loading...</span>
-    </div>
-  </div>
-);
 
 function AppService() {
   const [data, setData] = useState([null]);
@@ -28,14 +21,20 @@ function AppService() {
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = 5;
 
-  console.log(currentPage);
-
   useEffect(() => {
     setLoading(true);
     setError(null);
     setData([null]);
 
-    fetch(`${BASE__URL}?s=${inputQuery}&page=${currentPage}&apikey=${API_KEY}`)
+    fetch(
+      `${BASE__URL}?s=${inputQuery}&page=${currentPage}&apikey=${API_KEY}`,
+      {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+        },
+      }
+    )
       .then((resp) => resp)
       .then((resp) => resp.json())
       .then((response) => {
@@ -53,43 +52,86 @@ function AppService() {
       });
   }, [inputQuery, currentPage]);
 
+  const SortYear = () => {
+    data.sort((a: any, b: any) => {
+      if (a.Year < b.Year) return 1;
+      if (a.Year > b.Year) return -1;
+      return 0;
+    });
+
+    setData(data.sort());
+    setLoading((current) => !current);
+  };
+
+  const SortSeries = () => {
+    const Series = data.filter((a: any) => a?.Type === "series");
+    setData(Series);
+    setLoading((current) => !current);
+  };
+
+  useEffect(() => {
+    setLoading(false);
+  }, [loading]);
+
   return (
-    <div className="App">
-      <NavBar searchHandler={undefined} />
-      <SearchInput searchHandler={setInputQuery} />
-
-      {loading && <Loader />}
-      {error !== null && (
-        <div
-          style={{
-            textAlign: "center",
-            margin: "30px",
-          }}
+    <div>
+      <NavBar searchHandler={setInputQuery} />
+      <div className="App button">
+        <Button
+          variant="outline-success"
+          onClick={SortYear}
+          style={{ margin: "20px", textAlign: "center" }}
         >
-          <Alert variant="danger" style={{ margin: "20px" }}>
-            <Alert.Heading>{error}</Alert.Heading>
-          </Alert>
-        </div>
-      )}
+          Years
+        </Button>
+        <Button
+          variant="outline-success"
+          onClick={SortSeries}
+          style={{ margin: "20px", textAlign: "center" }}
+        >
+          Series
+        </Button>
+        <Button
+          variant="outline-success"
+          onClick={SortYear}
+          style={{ margin: "20px", textAlign: "center" }}
+        >
+          Movie
+        </Button>
+      </div>
+      <div className="App">
+        {loading && <Loader />}
+        {error !== null && (
+          <div
+            style={{
+              textAlign: "center",
+            }}
+          >
+            <Alert variant="danger">
+              <Alert.Heading>{error}</Alert.Heading>
+            </Alert>
+          </div>
+        )}
 
-      {data !== null &&
-        data.length > 0 &&
-        data.map((result, index) => (
-          <CardInfo
-            Title={undefined}
-            imdbID={undefined}
-            Poster={undefined}
-            Type={undefined}
-            ShowDetail={setShowDetail}
-            DetailRequest={setDetailRequest}
-            ActivateModal={setActivateModal}
-            key={index}
-            {...(result as unknown as Record<string, unknown>)}
-          />
-        ))}
-
+        {data !== null &&
+          data.length > 0 &&
+          data.map((result, index) => (
+            <CardInfo
+              Title={undefined}
+              imdbID={undefined}
+              Poster={undefined}
+              Year={undefined}
+              Type={undefined}
+              ShowDetail={setShowDetail}
+              DetailRequest={setDetailRequest}
+              ActivateModal={setActivateModal}
+              key={index}
+              {...(result as unknown as Record<string, unknown>)}
+            />
+          ))}
+      </div>
       <Modal
-        size="sm"
+        className="modal-sm"
         show={activateModal}
         onClick={() => setActivateModal(false)}
       >
@@ -109,10 +151,7 @@ function AppService() {
           <Loader />
         )}
       </Modal>
-      <div
-        className="container"
-        style={{ display: "flex", justifyContent: "center" }}
-      >
+      <div className="pagination container">
         <Pagination
           currentPage={currentPage}
           lastPage={lastPage}

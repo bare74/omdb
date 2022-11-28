@@ -1,7 +1,8 @@
-import * as React from "react";
+import React from "react";
 import LoginDetail from "./LoginDetail";
 import "./Login.css";
 import AppService from "../components/AppService";
+import { useEffect } from "react";
 
 interface LoginState {
   password: string;
@@ -66,6 +67,24 @@ export default function Login() {
   const [state, dispatch] = React.useReducer(loginReducer, initialState);
   const { username, password, isLoading, error, isLoggedIn } = state;
 
+  console.log(username);
+  console.log(isLoggedIn);
+  console.log(isLoading);
+
+  useEffect(() => {
+    localStorage.setItem("userLogged", JSON.stringify(isLoggedIn));
+  }, [isLoggedIn]);
+
+  const stillLoggedIn = JSON.parse(localStorage.getItem("userLogged") as any);
+  console.log(stillLoggedIn);
+
+  //TEST TEST
+  //TEST TEST
+  // localStorage?.setItem("test", JSON.stringify(isLoggedIn));
+  // let result = JSON.parse(localStorage?.getItem("test"));
+
+  // console.log(result);
+
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({ type: "login" });
@@ -81,7 +100,7 @@ export default function Login() {
   return (
     <div className="Login">
       <div className="login-container">
-        {isLoggedIn ? (
+        {stillLoggedIn || isLoggedIn ? (
           <div className="TEST">
             <AppService />
             <button type="button" onClick={() => dispatch({ type: "logout" })}>

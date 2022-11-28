@@ -43,6 +43,20 @@
 // }
 
 import { useState } from "react";
+import CardDetail from "./CardDetail";
+
+// const searchMovies1 = (searchValue) => {
+//     const URL = `https://www.omdbapi.com/?s=${searchValue}&apikey=${API_KEY}`;
+//     return fetch(URL)
+//       .then((response) => response.json())
+//       .then((data) => data.Search)
+//       .catch((error) => {
+//         console.error("Error", error);
+//         throw error;
+//       });
+//   };
+// };
+
 const useSearchMovies = () => {
   const API_KEY = "70496c24";
 
@@ -88,14 +102,15 @@ const Sandbox = () => {
         <button onClick={handleInput}>search</button>
       </div>
 
-      <ul>
-        {movies.map(({ Title, imdbID, Poster }) => (
-          <li key={Title}>
+      <>
+        {movies.map(({ id, imdbID, Title }) => (
+          <div key={id}>
             {/* <img src={Poster} alt="nice" /> */}
-            {Title}, {imdbID}
-          </li>
+            {imdbID}, {Title}
+          </div>
         ))}
-      </ul>
+      </>
+      <CardDetail Title={movies.Title} />
     </div>
   );
 };
