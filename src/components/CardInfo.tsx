@@ -1,8 +1,5 @@
 import Card from "react-bootstrap/Card";
-
-// import { Card } from "react-bootstrap";
 import img_not_found from "../img/img_not_found.png";
-
 import "../App.css";
 
 const CardInfo = ({
