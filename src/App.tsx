@@ -1,21 +1,35 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AppService from "./components/DashBoard";
-import LoginDetail from "./assets/LoginDetail";
-import LoginRoutes from "./utils/LoginRoutes";
+import { OktaAuth, toRelativeUrl } from "@okta/okta-auth-js";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import { LoginCallback, Security } from "@okta/okta-react";
+import Home from "./components/home";
+import { useCallback } from "react";
 
-const App: React.FC = (): JSX.Element => {
-  return (
-    <>
-      <Router>
-        <Routes>
-          <Route path="/" element={<LoginDetail />} />
-          <Route element={<LoginRoutes />}></Route>
-          <Route path="/app" element={<AppService />} />
-        </Routes>
-      </Router>
-    </>
+function App() {
+  const oktaAuth = new OktaAuth({
+    issuer: process.env.REACT_APP_OKTA_ISSUER,
+    clientId: process.env.REACT_APP_OKTA_CLIENTID,
+    redirectUri:
+      process.env.REACT_APP_OKTA_BASE_REDIRECT_URI + "/login/callback",
+  });
+
+  const restoreOriginalUri = useCallback(
+    async (_oktaAuth: OktaAuth, originalUri: string) => {
+      window.location.replace(
+        toRelativeUrl(originalUri || "/", window.location.origin)
+      );
+    },
+    []
   );
-};
+
+  return (
+    <Router>
+      <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri}>
+        <Route path="/" exact={true} component={Home} />
+        <Route path="/login/callback" component={LoginCallback} />
+      </Security>
+    </Router>
+  );
+}
 
 export default App;
