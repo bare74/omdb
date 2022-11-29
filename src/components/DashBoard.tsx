@@ -3,7 +3,6 @@ import Modal from "react-bootstrap/Modal";
 import CardDetail from "./CardDetail";
 import NavBar from "./NavBar";
 import CardInfo from "./CardInfo";
-// import { API_KEY, BASE__URL } from "../services/ApiDetail";
 import Alert from "react-bootstrap/Alert";
 import Pagination from "./Pagination";
 import { Button } from "react-bootstrap";
@@ -21,6 +20,8 @@ function DashBoard() {
   const [detailRequest, setDetailRequest] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = 5;
+
+  console.log(error);
 
   useEffect(() => {
     setLoading(true);
@@ -77,41 +78,20 @@ function DashBoard() {
   return (
     <div>
       <NavBar searchHandler={setInputQuery} />
-      <div className="App button">
-        <Button
-          variant="outline-success"
-          onClick={SortYear}
-          style={{ margin: "20px", textAlign: "center" }}
-        >
+      <div className="App_button">
+        <Button variant="outline-success" onClick={SortYear}>
           Years
         </Button>
-        <Button
-          variant="outline-success"
-          onClick={SortSeries}
-          style={{ margin: "20px", textAlign: "center" }}
-        >
+        <Button variant="outline-success" onClick={SortSeries}>
           Series
         </Button>
-        <Button
-          variant="outline-success"
-          onClick={SortYear}
-          style={{ margin: "20px", textAlign: "center" }}
-        >
-          Movie
-        </Button>
       </div>
-      <div className="App">
+      <div className="Card">
         {loading && <Loader />}
         {error !== null && (
-          <div
-            style={{
-              textAlign: "center",
-            }}
-          >
-            <Alert variant="danger">
-              <Alert.Heading>{error}</Alert.Heading>
-            </Alert>
-          </div>
+          <Alert id="liveAlertPlaceholder">
+            <Alert.Heading>{error}</Alert.Heading>
+          </Alert>
         )}
 
         {data !== null &&
@@ -152,11 +132,10 @@ function DashBoard() {
           <Loader />
         )}
       </Modal>
-      <div className="pagination container">
+      <div className="pagination_container">
         <Pagination
           currentPage={currentPage}
           lastPage={lastPage}
-          maxLength={5}
           setCurrentPage={setCurrentPage}
         />
       </div>

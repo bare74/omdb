@@ -1,25 +1,24 @@
-.photo {
-  background-color: black;
-
-}
-
-.box {
-  display: inline-grid;
-  text-Align: center;
-  color: aliceblue;
+.fade.alert.alert-danger.show {
   justify-content: center;
-  align-items: center;
-  height: 420px;
-  width: 250px;
 }
 
-.App {
+.Card {
   background-color: black;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-gap: 30px;
 }
 
-
-.button {
+.App_button {
   text-align: center;
+  background-color: black;
+  padding: 40px;
+}
+
+.fade.alert.alert-primary.show {
+  margin-top: 30px;
+  position: absolute;
+  z-index: 1;
 }
 
 .card-detail {
@@ -32,12 +31,13 @@
   position: absolute;
   right: 0;
   text-align: center;
-  top: 10em;
+  top: 4em;
   width: 60%;
   z-index: 1;
 }
 
-.container {
+.pagination_container {
   display: flex;
   justify-content: center;
+  background-color: black;
 }

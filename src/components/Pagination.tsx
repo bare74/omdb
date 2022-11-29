@@ -3,16 +3,10 @@ import PageLink from "./PageLink";
 export type Props = {
   currentPage: number;
   lastPage: number;
-  maxLength: number;
   setCurrentPage: (page: number) => void;
 };
 
-function Pagination({
-  currentPage,
-  lastPage,
-  maxLength,
-  setCurrentPage,
-}: Props) {
+function Pagination({ currentPage, lastPage, setCurrentPage }: Props) {
   const pageNums = [1, 2, 3, 4, 5];
 
   return (

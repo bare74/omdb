@@ -4,8 +4,9 @@ const LoginDetail = async (creds: {
 }): Promise<void> => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (creds.username === "GA" && creds.password === "dawood") {
+      if (creds.username === "admin" && creds.password === "admin") {
         resolve();
+        localStorage.setItem("user", JSON.stringify(creds.username));
       } else {
         reject();
       }
