@@ -24,17 +24,7 @@ const NavBar = ({ searchHandler }: { searchHandler: any }) => {
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: "100px" }}
             navbarScroll
-          >
-            {/* <Nav.Link href="#action1">Hjem</Nav.Link>
-            <NavDropdown title="Link" id="navbarScrollingDropdown">
-              <NavDropdown.Item href="#action3">Film</NavDropdown.Item>
-              <NavDropdown.Item href="#action4">Serie</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Topp 10 filmer
-              </NavDropdown.Item>
-            </NavDropdown> */}
-          </Nav>
+          ></Nav>
           <Form className="d-flex" onSubmit={handleSubmit}>
             <Form.Control
               type="search"
@@ -45,9 +35,7 @@ const NavBar = ({ searchHandler }: { searchHandler: any }) => {
               onChange={(event) => setMessage(event.target.value)}
             />
 
-            <Button variant="outline-success" type="submit">
-              Search
-            </Button>
+            <Button type="submit">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

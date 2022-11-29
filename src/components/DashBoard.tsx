@@ -21,8 +21,6 @@ function DashBoard() {
   const [currentPage, setCurrentPage] = useState(1);
   const lastPage = 5;
 
-  console.log(error);
-
   useEffect(() => {
     setLoading(true);
     setError(null);
@@ -79,10 +77,10 @@ function DashBoard() {
     <div>
       <NavBar searchHandler={setInputQuery} />
       <div className="App_button">
-        <Button variant="outline-success" onClick={SortYear}>
+        <Button style={{ margin: "10px" }} onClick={SortYear}>
           Years
         </Button>
-        <Button variant="outline-success" onClick={SortSeries}>
+        <Button style={{ margin: "10px" }} onClick={SortSeries}>
           Series
         </Button>
       </div>

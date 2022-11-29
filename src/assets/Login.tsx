@@ -18,6 +18,8 @@ type LoginAction =
   | { type: "login" | "success" | "error" | "logout" }
   | { type: "field"; fieldName: string; payload: string };
 
+console.log("field");
+
 const loginReducer = (state: LoginState, action: LoginAction): LoginState => {
   switch (action.type) {
     case "field": {
@@ -68,6 +70,15 @@ const initialState: LoginState = {
 export default function Login() {
   const [state, dispatch] = React.useReducer(loginReducer, initialState);
   const { username, password, isLoading, error, isLoggedIn } = state;
+
+  // const loggedIn = "admin";
+
+  //   if (loggedIn === username) {
+  //   () => dispatch({ type: "success" })
+  //   }
+  // );
+
+  // console.log(isLoading);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -48,8 +48,9 @@ const CardInfo = ({
   return (
     <>
       {/* <li> */}
-      <Card.Body>
+      <Card.Body style={{ padding: "5px" }}>
         <Card.Img
+          style={{ height: "300px", width: "200px" }}
           variant="top"
           src={Poster === "N/A" ? img_not_found : Poster}
           alt={Title}
