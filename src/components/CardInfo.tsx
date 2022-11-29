@@ -46,11 +46,10 @@ const CardInfo = ({
   };
 
   return (
-    <>
+    <div>
       {/* <li> */}
-      <Card.Body style={{ padding: "5px" }}>
+      <Card.Body>
         <Card.Img
-          style={{ height: "300px", width: "200px" }}
           variant="top"
           src={Poster === "N/A" ? img_not_found : Poster}
           alt={Title}
@@ -66,7 +65,7 @@ const CardInfo = ({
         </Card.Text>
       </Card.Body>
       {/* </li> */}
-    </>
+    </div>
   );
 };
 

@@ -10,7 +10,7 @@ import Loader from "./Loader";
 
 import "../App.css";
 
-function DashBoard() {
+function Board() {
   const [data, setData] = useState([null]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -141,4 +141,4 @@ function DashBoard() {
   );
 }
 
-export default DashBoard;
+export default Board;
