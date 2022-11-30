@@ -5,14 +5,18 @@
 .Card {
   background-color: black;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-gap: 10px;
+}
+
+.card-body {
+  text-align: center;
 }
 
 .App_button {
   text-align: center;
   background-color: black;
-  padding: 30px;
+  padding: 10px;
 }
 
 .Login_button {
@@ -32,7 +36,7 @@
 }
 
 .card-detail {
-  padding: 30px;
+  padding: 5px;
 }
 
 .alert {

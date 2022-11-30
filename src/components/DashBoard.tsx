@@ -14,7 +14,7 @@ function DashBoard() {
   const [data, setData] = useState([null]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [inputQuery, setInputQuery] = useState("Platoon");
+  const [inputQuery, setInputQuery] = useState("breaking bad");
   const [activateModal, setActivateModal] = useState(false);
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);

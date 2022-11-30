@@ -1,10 +1,10 @@
 import { Button } from "react-bootstrap";
 
 const SortButton = (props: any) => {
-  const { disableBtn, text } = props;
+  const { text } = props;
 
   return (
-    <Button onClick={props.onClick} disabled={disableBtn} {...props}>
+    <Button onClick={props.onClick} {...props}>
       {text}
       {props.children}
     </Button>
