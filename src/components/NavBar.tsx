@@ -1,4 +1,4 @@
-import Button from "react-bootstrap/Button";
+import SortButton from "./SortButton";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
@@ -35,7 +35,7 @@ const NavBar = ({ searchHandler }: { searchHandler: any }) => {
               onChange={(event) => setMessage(event.target.value)}
             />
 
-            <Button type="submit">Search</Button>
+            <SortButton text="Search" type="submit"></SortButton>
           </Form>
         </Navbar.Collapse>
       </Container>

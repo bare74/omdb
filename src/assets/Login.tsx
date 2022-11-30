@@ -2,7 +2,7 @@ import React from "react";
 import LoginDetail from "./LoginDetail";
 import "./Login.css";
 import DashBoard from "../components/DashBoard";
-import { Button } from "react-bootstrap";
+import SortButton from "../components/SortButton";
 import Form from "react-bootstrap/Form";
 // import { useEffect } from "react";
 
@@ -17,8 +17,6 @@ interface LoginState {
 type LoginAction =
   | { type: "login" | "success" | "error" | "logout" }
   | { type: "field"; fieldName: string; payload: string };
-
-console.log("field");
 
 const loginReducer = (state: LoginState, action: LoginAction): LoginState => {
   switch (action.type) {
@@ -71,15 +69,6 @@ export default function Login() {
   const [state, dispatch] = React.useReducer(loginReducer, initialState);
   const { username, password, isLoading, error, isLoggedIn } = state;
 
-  // const loggedIn = "admin";
-
-  //   if (loggedIn === username) {
-  //   () => dispatch({ type: "success" })
-  //   }
-  // );
-
-  // console.log(isLoading);
-
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch({ type: "login" });
@@ -98,13 +87,12 @@ export default function Login() {
         {isLoggedIn ? (
           <div className="TEST">
             <DashBoard />
-            <div className="App_button">
-              <Button
+            <div className="Login_button">
+              <SortButton
+                text={isLoading ? "Loggin out....." : "Login Out"}
                 type="button"
                 onClick={() => dispatch({ type: "logout" })}
-              >
-                Log out
-              </Button>
+              ></SortButton>
             </div>
           </div>
         ) : (
@@ -138,9 +126,12 @@ export default function Login() {
                 })
               }
             />
-            <Button type="submit" className="submit" disabled={isLoading}>
-              {isLoading ? "Loggin in....." : "Login In"}
-            </Button>
+            <SortButton
+              text={isLoading ? "Loggin in....." : "Login In"}
+              type="submit"
+              className="submit"
+              disabled={isLoading}
+            ></SortButton>
             <p> LOGIN detail Username = "admin" Password = "admin"</p>
           </Form>
         )}

@@ -12,7 +12,17 @@
 .App_button {
   text-align: center;
   background-color: black;
-  padding: 40px;
+  padding: 30px;
+}
+
+.Login_button {
+  text-align: center;
+  background-color: black;
+  top: 90%;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+
 }
 
 .fade.alert.alert-primary.show {

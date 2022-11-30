@@ -5,8 +5,8 @@ import NavBar from "./NavBar";
 import CardInfo from "./CardInfo";
 import Alert from "react-bootstrap/Alert";
 import Pagination from "./Pagination";
-import { Button } from "react-bootstrap";
 import Loader from "./Loader";
+import SortButton from "./SortButton";
 
 import "../App.css";
 
@@ -19,12 +19,16 @@ function DashBoard() {
   const [detail, setShowDetail] = useState(false);
   const [detailRequest, setDetailRequest] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [visible, setVisible] = useState(false);
   const lastPage = 5;
+
+  console.log(detailRequest);
 
   useEffect(() => {
     setLoading(true);
     setError(null);
     setData([null]);
+    setVisible(false);
 
     fetch(
       `${process.env.REACT_APP_BASE_URL}?s=${inputQuery}&page=${currentPage}&apikey=${process.env.REACT_APP_API_KEY}`,
@@ -40,6 +44,7 @@ function DashBoard() {
       .then((response) => {
         if (response.Response === "False") {
           setError(response.Error);
+          setVisible(true);
         } else {
           setData(response.Search);
         }
@@ -69,6 +74,12 @@ function DashBoard() {
     setLoading((current) => !current);
   };
 
+  const SortMovie = () => {
+    const Movie = data.filter((a: any) => a?.Type === "movie");
+    setData(Movie);
+    setLoading((current) => !current);
+  };
+
   useEffect(() => {
     setLoading(false);
   }, [loading]);
@@ -76,14 +87,26 @@ function DashBoard() {
   return (
     <div>
       <NavBar searchHandler={setInputQuery} />
-      <div className="App_button">
-        <Button style={{ margin: "10px" }} onClick={SortYear}>
-          Years
-        </Button>
-        <Button style={{ margin: "10px" }} onClick={SortSeries}>
-          Series
-        </Button>
-      </div>
+      {visible! === false && (
+        <div className="App_button">
+          <SortButton
+            text="Years"
+            style={{ margin: "10px" }}
+            onClick={SortYear}
+          ></SortButton>
+          <SortButton
+            text="Series"
+            style={{ margin: "10px" }}
+            onClick={SortSeries}
+          ></SortButton>
+
+          <SortButton
+            text="Movie"
+            disableBtn={false}
+            onClick={SortMovie}
+          ></SortButton>
+        </div>
+      )}
       <div className="Card">
         {loading && <Loader />}
         {error !== null && (
@@ -130,13 +153,15 @@ function DashBoard() {
           <Loader />
         )}
       </Modal>
-      <div className="pagination_container">
-        <Pagination
-          currentPage={currentPage}
-          lastPage={lastPage}
-          setCurrentPage={setCurrentPage}
-        />
-      </div>
+      {visible! === false && (
+        <div className="pagination_container">
+          <Pagination
+            currentPage={currentPage}
+            lastPage={lastPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
+      )}
     </div>
   );
 }
