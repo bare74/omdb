@@ -1,4 +1,9 @@
-import { Router, Navigate, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { PrivateRoute } from "./app/PrivateRoute";
 import { history } from "./helpers/history";
 import { LoginPage, UsersListPage, DynamicFormPage } from "./app/pages";

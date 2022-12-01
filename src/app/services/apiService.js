@@ -3,7 +3,7 @@ import { env_var } from "../../config/env";
 import { history } from "../../helpers/history";
 import { getFormDataHeader, getHeaderInfo } from "../../helpers/tokenCreator";
 import { removeTokens } from "./localStorage";
-const handleResponse = (response: any) => {
+const handleResponse = (response) => {
   if (response.status === 401) {
     removeTokens();
     history.push("/v1");
@@ -15,7 +15,7 @@ const handleResponse = (response: any) => {
   return response;
 };
 
-export const post = async function (url: string, body: any) {
+export const post = async function (url, body) {
   let header = await getHeaderInfo();
   try {
     let resp = await axios.post(env_var.BASE_URL + url, body, header);
@@ -25,7 +25,7 @@ export const post = async function (url: string, body: any) {
   }
 };
 
-export const get = async function (url: any, params: any = {}) {
+export const get = async function (url, params = {}) {
   let header = await getHeaderInfo();
   try {
     let resp = await axios.get(url, { ...header, params });
@@ -35,7 +35,7 @@ export const get = async function (url: any, params: any = {}) {
   }
 };
 
-export const put = async function (body: any, url: any) {
+export const put = async function (body, url) {
   let header = await getHeaderInfo();
 
   try {
@@ -47,7 +47,7 @@ export const put = async function (body: any, url: any) {
   }
 };
 
-export const deleteApi = async function (url: any) {
+export const deleteApi = async function (url) {
   let header = await getHeaderInfo();
 
   try {
@@ -59,7 +59,7 @@ export const deleteApi = async function (url: any) {
   }
 };
 
-export const postImage = async function (url: string, body: any) {
+export const postImage = async function (url, body) {
   let header = await getFormDataHeader();
   var formData = new FormData();
   formData.append("file", body);

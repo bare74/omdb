@@ -40,7 +40,7 @@ export const authenticateUser = (userData: any) => async (dispatch: any) => {
     dispatch(success(authData.data));
     history.push("/v1");
   } catch (err) {
-    dispatch(error(err));
+    dispatch(error(err as any));
   }
 };
 export const { start, success, error } = authenticationSlice.actions;

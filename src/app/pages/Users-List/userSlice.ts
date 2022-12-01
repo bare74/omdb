@@ -39,7 +39,7 @@ export const fetchUsers = () => async (dispatch: any) => {
     const userLists = await getUserList();
     dispatch(success({ userList: userLists }));
   } catch (err) {
-    dispatch(error(err));
+    dispatch(error(err as any));
   }
 };
 export const { start, success, error } = userListSlice.actions;
