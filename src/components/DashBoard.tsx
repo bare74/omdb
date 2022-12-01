@@ -24,6 +24,8 @@ function DashBoard() {
 
   console.log(detailRequest);
 
+  console.log(error);
+
   useEffect(() => {
     setLoading(true);
     setError(null);

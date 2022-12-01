@@ -48,6 +48,7 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 Inspirert av : https://github.com/jogeshpi03 - omdb-react
 Pagination : https://github.com/dominicarrojado - pagination
 Login - https://codesandbox.io/s/x4h6w?file=/src/App.tsx
+npm install dotenv;
 
 OMDb-Search-Exam
 Search the OMDb API
