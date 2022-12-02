@@ -47,7 +47,6 @@ const CardInfo = ({
 
   return (
     <>
-      {/* <li> */}
       <Card.Body>
         <Card.Img
           variant="top"
@@ -55,7 +54,6 @@ const CardInfo = ({
           alt={Title}
           onClick={() => clickHandler()}
         />
-
         <Card.Title>{Title === "N/A" ? " " : Title}</Card.Title>
         <Card.Text className="mb-2 text-muted">
           <span>{Year === "N/A" ? " " : Year}</span>
@@ -64,7 +62,6 @@ const CardInfo = ({
           <span>{Type === "N/A" ? " " : Type}</span>
         </Card.Text>
       </Card.Body>
-      {/* </li> */}
     </>
   );
 };

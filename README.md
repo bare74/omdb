@@ -106,7 +106,3 @@ $ npm install
 $ npm start
 Author
 Mehdi Chekori
-Homepage: https://github.com/mehdichekori
-Email: mehdichekori@gmail.com
-License
-MIT

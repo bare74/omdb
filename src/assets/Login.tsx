@@ -4,7 +4,6 @@ import "./Login.css";
 import DashBoard from "../components/DashBoard";
 import SortButton from "../components/SortButton";
 import Form from "react-bootstrap/Form";
-// import { useEffect } from "react";
 
 interface LoginState {
   password: string;

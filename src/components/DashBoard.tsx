@@ -7,7 +7,6 @@ import Alert from "react-bootstrap/Alert";
 import Pagination from "./Pagination";
 import Loader from "./Loader";
 import SortButton from "./SortButton";
-
 import "../App.css";
 
 function DashBoard() {
@@ -21,10 +20,6 @@ function DashBoard() {
   const [currentPage, setCurrentPage] = useState(1);
   const [visible, setVisible] = useState(false);
   const lastPage = 5;
-
-  console.log(detailRequest);
-
-  console.log(error);
 
   useEffect(() => {
     setLoading(true);
@@ -102,21 +97,16 @@ function DashBoard() {
             onClick={SortSeries}
           ></SortButton>
 
-          <SortButton
-            text="Movie"
-            disableBtn={false}
-            onClick={SortMovie}
-          ></SortButton>
+          <SortButton text="Movie" onClick={SortMovie}></SortButton>
         </div>
       )}
+      {loading && <Loader />}
+      {error !== null && (
+        <Alert id="liveAlertPlaceholder">
+          <Alert.Heading>{error}</Alert.Heading>
+        </Alert>
+      )}
       <div className="Card">
-        {loading && <Loader />}
-        {error !== null && (
-          <Alert id="liveAlertPlaceholder">
-            <Alert.Heading>{error}</Alert.Heading>
-          </Alert>
-        )}
-
         {data !== null &&
           data.length > 0 &&
           data.map((result, index) => (
