@@ -25,21 +25,24 @@ You will also see any lint errors in the console.
 
 ### `Search by query`
 
-http://www.omdbapi.com/?s=ghost //results 1-10
-http://www.omdbapi.com/?s=ghost&page=2 // results 11-20
+- http://www.omdbapi.com/?s=ghost //results 1-10
+- http://www.omdbapi.com/?s=ghost&page=2 // results 11-20
+
 Returns the first 10 results based on the query value provided as s
 Pagination can be added via &page=n, where n is 1-100
 Movie Object Structure
-{
-"Title": "Mission: Impossible - Ghost Protocol",
-"Year": "2011",
-"imdbID": "tt1229238",
-"Type": "movie",
-"Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTY4MTUxMjQ5OV5BMl5BanBnXkFtZTcwNTUyMzg5Ng@@._V1_SX300.jpg"
-}
-View movie details by imdbID
-http://www.omdbapi.com/?i=tt1229238
-Using the imdbID provided by the search results will let you fetch the details of a particular movie.
+
+- {
+  "Title": "Mission: Impossible - Ghost Protocol",
+  "Year": "2011",
+  "imdbID": "tt1229238",
+  "Type": "movie",
+  "Poster": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTY4MTUxMjQ5OV5BMl5BanBnXkFtZTcwNTUyMzg5Ng@@._V1_SX300.jpg"
+  }
+
+- View movie details by imdbID
+- http://www.omdbapi.com/?i=tt1229238
+- Using the imdbID provided by the search results will let you fetch the details of a particular movie.
 
 ### `npm test`
 
