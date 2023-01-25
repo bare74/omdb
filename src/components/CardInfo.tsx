@@ -40,7 +40,7 @@ const CardInfo = ({
         DetailRequest(false);
         ShowDetail(response);
       })
-      .catch(({ message }) => {
+      .catch(() => {
         DetailRequest(false);
       });
   };

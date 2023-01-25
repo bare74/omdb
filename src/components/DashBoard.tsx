@@ -21,6 +21,10 @@ function DashBoard() {
   const [visible, setVisible] = useState(false);
   const lastPage = 5;
 
+  console.log(data);
+  console.log(error);
+  console.log(loading);
+
   useEffect(() => {
     setLoading(true);
     setError(null);
