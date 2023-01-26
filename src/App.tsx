@@ -6,7 +6,7 @@ const App: React.FC = (): JSX.Element => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/desa" element={<Login />} />
       </Routes>
     </>
   );
